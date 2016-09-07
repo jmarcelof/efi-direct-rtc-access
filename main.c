@@ -1,9 +1,11 @@
 #include <efi.h>
 #include <efilib.h>
 
+#include "PciRootBridgeIo.h"
+
 #define SEC_TO_USEC(value) ((value) * 1000 * 1000)
 
-EFI_GUID gEfiPciRootBridgeIoProtocolGuid = { 0x2f707ebb, 0x4a1a, 0x11d4, {0x9a, 0x38, 0x00, 0x90, 0x27, 0x3f, 0xc1, 0x4d } };
+EFI_GUID gEfiPciRootBridgeIoProtocolGuid = EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID;
 
 EFI_STATUS
 EFIAPI
@@ -12,7 +14,7 @@ efi_main (
     EFI_SYSTEM_TABLE    *SystemTable)
 {
     EFI_STATUS 		Status = EFI_SUCCESS;
-    VOID 		*PciRootBridge = NULL;
+    EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL *PciRootBridge = NULL;
 
     InitializeLib (ImageHandle, SystemTable);
 
@@ -25,3 +27,4 @@ efi_main (
 
     return (EFI_SUCCESS);
 }
+
